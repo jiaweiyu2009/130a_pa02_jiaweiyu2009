@@ -15,8 +15,8 @@ fstream file;
 int word;
 string filename;
 Heap mmheap;
-//filename = "PA1_dataset.txt";
-filename = "small.txt";
+filename = "/autograder/submission/PA2_dataset.txt";
+//filename = "small.txt";
 file.open(filename.c_str());
 while (file >>word){
 	mmheap.insert2(word,false);
