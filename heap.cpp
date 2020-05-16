@@ -313,7 +313,7 @@ cout << "heap = ";
 		cout << *it << " ";
 	}
 
-	cout << "\n";
+	//cout << "\n";
 }
 
 void Heap::getMin(){
