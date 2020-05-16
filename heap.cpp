@@ -5,9 +5,21 @@
 using namespace std;
 
 void Heap::insert(int value){
-if(this->vdata.size() < 3){
+if(this->vdata.size() == 0){
 	this->vdata.push_back(value);
+	cout << "inserted " << value << endl;
 }
+else if(this->vdata.size() == 1){
+	this->vdata.push_back(value);
+	bubbleupMax(this->vdata.size()-1);
+	cout << "inserted " << value << endl;
+}
+else if(this->vdata.size() == 2){
+	this->vdata.push_back(value);
+	bubbleupMax(this->vdata.size()-1);
+	cout << "inserted " << value << endl;
+}
+
 else{
 
 	this->vdata.push_back(value);
@@ -26,10 +38,19 @@ else{
 
 
 void Heap::insert2(int value, bool bb){
-if(bb==false){
-if(this->vdata.size() < 3){
+if(bb == false){
+if(this->vdata.size() == 0){
 	this->vdata.push_back(value);
 }
+else if(this->vdata.size() == 1){
+	this->vdata.push_back(value);
+	bubbleupMax(this->vdata.size()-1);
+}
+else if(this->vdata.size() == 2){
+	this->vdata.push_back(value);
+	bubbleupMax(this->vdata.size()-1);
+}
+
 else{
 
 	this->vdata.push_back(value);
@@ -40,7 +61,8 @@ else{
 	else{
 		bubbleupMax(this->vdata.size()-1);
 	}
-	}
+
+}
 }
 }
 
@@ -119,69 +141,6 @@ void Heap::bubbleupMax(int i){
 
 
 void Heap::deleteMin(){
-/*	if(this->vdata.size() == 1){
-		this->vdata.pop_back();
-	}
-	else if(this->vdata.size() == 2){
-		this->vdata[0] = this->vdata[1];
-		this->vdata.pop_back();
-	}
-	else if(this->vdata.size() == 3){
-		this->vdata[0] = this->vdata[2];
-		this->vdata.pop_back();
-		if(this->vdata[1] < this->vdata[0]){
-			int temp = this->vdata[1];
-			this->vdata[1] = this->vdata[0];
-			this->vdata[0] =temp;
-		}
-	}
-	else if(this->vdata.size() == 4){
-		this->vdata[0] = this->vdata[3];
-		this->vdata.pop_back();
-	}
-	else if(this->vdata.size() == 5){
-		this->vdata[0] = this->vdata[4];
-		this->vdata.pop_back();
-		if(this->vdata[0] > this->data[3]){
-			int temp = this->vdata[3];
-			this->vdata[3] = this->vdata[0];
-			this->vdata[0] = temp;
-		}
-	}
-	else if(this->vdata.size() == 6){
-		this->vdata[0] = this->vdata[5];
-		this->vdata.pop_back();
-		if(this->vdata[3] > this->vdata[4]){
-			int temp = this->vdata[4];
-			this->vdata[4] = this->vdata[0];
-			this->vdata[0] = temp;
-		}
-		else{
-			int temp = this->vdata[3];
-			this->vdata[3] = this->vdata[0];
-			this->vdata[0] = temp;
-		}
-	}
-	else if(this->vdata.size() == 7){
-		this->vdata[0] = this->vdata[6];
-		this->vdata.pop_back();
-		int smallest = 3;
-		if (this->vdata[4] < this->vdata[smallest]){
-			smallest = 4;
-		}
-		if (this->vdata[5] < this->vdata[smallest]){
-			smallest = 5;
-		}
-		int temp = this->vdata[smallest];
-		this->vdata[smallest] = this->vdata[0];
-		this->vdata[0] = temp;
-	}
-	else{
-
-
-*/
-
-
 
 	int min = vdata[0];
 	int last = this->vdata[vdata.size()-1];
