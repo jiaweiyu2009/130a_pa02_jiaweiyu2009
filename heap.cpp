@@ -9,32 +9,12 @@ if(this->vdata.size() == 0){
 	this->vdata.push_back(value);
 	cout << "inserted " << value << endl;
 }
-else if(this->vdata.size() == 1){
-	this->vdata.push_back(value);
-	bubbleupMax(this->vdata.size()-1);
-	cout << "inserted " << value << endl;
-}
-else if(this->vdata.size() == 2){
-	this->vdata.push_back(value);
-	bubbleupMax(this->vdata.size()-1);
-	cout << "inserted " << value << endl;
-}
-
 else{
-
 	this->vdata.push_back(value);
-	int level = log(this->vdata.size())/log(2);
-	if(level%2 == 0){
-		bubbleupMin(this->vdata.size()-1);
-	}
-	else{
-		bubbleupMax(this->vdata.size()-1);
-	}
-
-	cout << "inserted " << value <<endl;
+	bubbleup(this->vdata.size()-1);
+	cout << "inserted " << value << endl;
 }
 }
-
 
 
 void Heap::insert2(int value, bool bb){
@@ -42,26 +22,9 @@ if(bb == false){
 if(this->vdata.size() == 0){
 	this->vdata.push_back(value);
 }
-else if(this->vdata.size() == 1){
+else {
 	this->vdata.push_back(value);
-	bubbleupMax(this->vdata.size()-1);
-}
-else if(this->vdata.size() == 2){
-	this->vdata.push_back(value);
-	bubbleupMax(this->vdata.size()-1);
-}
-
-else{
-
-	this->vdata.push_back(value);
-	int level = log(this->vdata.size())/log(2);
-	if(level%2 == 0){
-		bubbleupMin(this->vdata.size()-1);
-	}
-	else{
-		bubbleupMax(this->vdata.size()-1);
-	}
-
+	bubbleup(this->vdata.size()-1);
 }
 }
 }
@@ -69,76 +32,62 @@ else{
 
 
 void Heap::bubbleupMin(int i){
-	if(i>0){
-		int curr = i;
-		int parent = (i-1)/2;
-		int gp = (((i-1)/2)-1)/2;
-	   if(parent != gp){
-		if((this->vdata[curr] > this->vdata[parent]) &&(this->vdata[curr] > this->vdata[gp])){
-			int temp = this->vdata[curr];
-			this->vdata[curr] = this->vdata[parent];
-			this->vdata[parent] = temp;
-			bubbleupMax((curr-1)/2);
-			bubbleupMin((((curr-1)/2)-1)/2);
-		}
-
-		else if((this->vdata[curr] < this->vdata[parent]) && (this->vdata[curr] < this->vdata[gp])){
-			int temp = this->vdata[curr];
-			this->vdata[curr] = this->vdata[gp];
-			this->vdata[gp] = temp;
-			bubbleupMax((curr-1)/2);
-			bubbleupMin((((curr-1)/2)-1)/2);
-		}
-		else{
-			return;
-		}
+int curr = i;
+int parent = (i-1)/2;
+int gp = (parent-1)/2;
+if(gp != parent){
+	if (this->vdata[curr] < this->vdata[gp]){
+		int temp = this->vdata[curr];
+		this->vdata[curr] = this->vdata[gp];
+		this->vdata[gp] = temp;
+		bubbleupMin(gp);
 	}
-	   else{return;}
-	
-	}
-	else{
-		return;
-	}
-
-
+}
 	
 }
 
 
 void Heap::bubbleupMax(int i){
-
-	if(i>0){
-		int curr = i;
-		int parent = (i-1)/2;
-		int gp = (((i-1)/2)-1)/2;
-
-	  if(parent != gp){
-		if((this->vdata[curr] < this->vdata[parent]) &&(this->vdata[curr] < this->vdata[gp])){
-			int temp = this->vdata[curr];
-			this->vdata[curr] = this->vdata[parent];
-			this->vdata[parent] = temp;
-			bubbleupMin((curr-1)/2);
-			bubbleupMax((((curr-1)/2)-1)/2);
-		}
-
-		else if((this->vdata[curr] > this->vdata[parent]) && (this->vdata[curr] > this->vdata[gp])){
-			int temp = this->vdata[curr];
-			this->vdata[curr] = this->vdata[gp];
-			this->vdata[gp] = temp;
-			bubbleupMin((curr-1)/2);
-			bubbleupMax((((curr-1)/2)-1)/2);
-		}
-		else{
-			return;
-		}
-	  }
-	  else{return;}
-	}
-	else{
-		return;
+int curr = i;
+int parent = (i-1)/2;
+int gp = (parent-1)/2;
+if(gp != parent){
+	if(this->vdata[curr] > this->vdata[gp]){
+		int temp = this->vdata[curr];
+		this->vdata[curr] = this->vdata[gp];
+		this->vdata[gp] = temp;
+		bubbleupMax(gp);
 	}
 }
+}
 
+void Heap::bubbleup(int i){
+	int curr = i;
+	int parent = (i-1)/2;
+	int level = log(this->vdata.size())/log(2);
+	if(level%2 == 0){
+		if(this->vdata[curr] > this->vdata[parent]){
+			int temp = this->vdata[parent];
+			this->vdata[parent] = this->vdata[curr];
+			this->vdata[curr] = temp;
+			bubbleupMax(parent);
+		}
+		else{
+			bubbleupMin(curr);
+		}
+	}
+	else{
+		if(this->vdata[curr] < this->vdata[parent]){
+			int temp = this->vdata[parent];
+			this->vdata[parent] = this->vdata[curr];
+			this->vdata[curr] = temp;
+			bubbleupMin(parent);
+		}
+		else{
+			bubbleupMax(curr);
+		}
+	}
+}
 
 void Heap::deleteMin(){
 
@@ -272,7 +221,7 @@ cout << "heap = ";
 		cout << *it << " ";
 	}
 
-	//cout << "\n";
+	cout << "\n";
 }
 
 void Heap::getMin(){

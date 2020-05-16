@@ -11,6 +11,7 @@ class Heap{
     void insert2(int value, bool bb);// insert value; //duplicates are allowed
     void bubbleupMin(int i);
     void bubbleupMax(int i);
+    void bubbleup(int i);
     void deleteMin();
     void deleteMax();
     void bubbledownMin(int i);
