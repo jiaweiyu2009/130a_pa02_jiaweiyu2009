@@ -5,7 +5,7 @@
 using namespace std;
 
 void Heap::insert(int value){
-if(this->vdata.size() == 0){
+if(this->vdata.size() == 0 ){
 	this->vdata.push_back(value);
 	cout << "inserted " << value << endl;
 }
