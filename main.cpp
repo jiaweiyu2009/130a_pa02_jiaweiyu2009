@@ -12,7 +12,7 @@ using namespace std;
 
 int main(int argc, char** argv){
 fstream file;
-int word;
+int word; 
 string filename;
 Heap mmheap;
 filename = "/autograder/submission/PA2_dataset.txt";
